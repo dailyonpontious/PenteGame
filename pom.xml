@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                csc180.pontious.dailyon.pentegame/csc180.pontious.dailyon.pentegame.HelloApplication
+                                csc180.pontious.dailyon.pentegame.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

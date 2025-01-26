@@ -18,7 +18,7 @@ public class PenteController {
     private Player currentPlayer;
 
     @FXML
-    private Label turnIndicatorLabel; // Label to show whose turn it is
+    private Label playerTurn; // Label to show whose turn it is
 
     public void initializePlayers(String name1, String name2) {
         playerOne = new Player(name1, "X");
@@ -32,7 +32,7 @@ public class PenteController {
             placePiece(row, col, currentPlayer.getSymbol());
             checkForWinOrTriaTesera(row, col);
 
-            // Switch turns
+
             currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
             updateTurnIndicator();
         }
@@ -43,12 +43,11 @@ public class PenteController {
     }
 
     private boolean isMoveValid(int row, int col) {
-        // Check if the move is legal
         return true;
     }
 
     private void updateTurnIndicator() {
-        turnIndicatorLabel.setText("It's " + currentPlayer.getName() + "'s turn!");
+        playerTurn.setText("It's " + currentPlayer.getName() + "'s turn!");
     }
 
     private void checkForWinOrTriaTesera(int row, int col) {
