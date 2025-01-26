@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="738.0" fitWidth="744.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@betterpenteboard.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="NameOne" layoutX="925.0" layoutY="62.0" promptText="Player One Name" />
+      <Label layoutX="776.0" layoutY="65.0" prefHeight="19.0" prefWidth="149.0" text="Enter Player One's Name:" />
+      <GridPane layoutX="8.0" layoutY="9.0" prefHeight="715.0" prefWidth="721.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="97.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.66667175292969" minHeight="10.0" prefHeight="35.99998982747396" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="37.66666666666666" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.66666666666666" minHeight="10.0" prefHeight="36.00001017252603" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="52.33332316080728" minHeight="10.0" prefHeight="37.33332316080728" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="62.99998474121094" minHeight="10.0" prefHeight="39.33332316080728" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="41.33332316080731" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="96.66668701171875" minHeight="10.0" prefHeight="35.333343505859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="96.66668701171875" minHeight="10.0" prefHeight="39.33332316080731" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="109.3333740234375" minHeight="10.0" prefHeight="37.333353678385436" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="115.33334350585943" minHeight="10.0" prefHeight="35.333292643229186" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="114.00002034505206" minHeight="10.0" prefHeight="40.66668701171875" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="93.00003051757812" minHeight="10.0" prefHeight="38.666646321614564" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="91.6666259765625" minHeight="10.0" prefHeight="40.00002034505212" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="78.66664632161462" minHeight="10.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.33329264322913" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="89.00004069010413" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="97.33335367838538" minHeight="10.0" prefHeight="43.66664632161462" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="120.66666666666663" minHeight="10.0" prefHeight="34.66666666666663" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <TextField fx:id="NameTwo" layoutX="925.0" layoutY="98.0" promptText="Player Two Name" />
+      <Label layoutX="776.0" layoutY="101.0" prefHeight="19.0" prefWidth="149.0" text="Enter Player Two's Name:" />
+   </children>
+</AnchorPane>
