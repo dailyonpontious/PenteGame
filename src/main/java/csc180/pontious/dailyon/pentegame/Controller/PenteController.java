@@ -1,15 +1,9 @@
-/**
- * @author dpontious
- * @createdOn 1/21/2025 at 9:39 AM
- * @projectName PenteGame
- * @packageName csc180.pontious.dailyon.pentegame.Controller;
- */
+
 package csc180.pontious.dailyon.pentegame.Controller;
 
 import csc180.pontious.dailyon.pentegame.Model.Player;
 import javafx.fxml.FXML;
-
-import java.awt.*;
+import javafx.scene.control.Label;
 
 
 public class PenteController {
@@ -18,12 +12,16 @@ public class PenteController {
     private Player currentPlayer;
 
     @FXML
-    private Label playerTurn; // Label to show whose turn it is
+    public Label lblTurn; // Label to show whose turn it is
 
-    public void initializePlayers(String name1, String name2) {
-        playerOne = new Player(name1, "X");
-        playerTwo = new Player(name2, "O");
-        currentPlayer = playerOne; // Player One starts
+    public void initializePlayers(String playerNameOne, String playerNameTwo) {
+
+        String catOne = this.getClass().getResource("/concernedCat.png").toString();
+        String catTwo = this.getClass().getResource("/huhCat.png").toString();
+
+        playerOne = new Player(playerNameOne, catOne);
+        playerTwo = new Player(playerNameTwo, catTwo);
+        currentPlayer = playerOne;
         updateTurnIndicator();
     }
 
@@ -40,6 +38,7 @@ public class PenteController {
 
     private void placePiece(int row, int col, String symbol) {
         // Code to update the board UI with "X" or "O"
+
     }
 
     private boolean isMoveValid(int row, int col) {
@@ -47,7 +46,7 @@ public class PenteController {
     }
 
     private void updateTurnIndicator() {
-        playerTurn.setText("It's " + currentPlayer.getName() + "'s turn!");
+        lblTurn.setText("It's " + currentPlayer.getName() + "'s turn!");
     }
 
     private void checkForWinOrTriaTesera(int row, int col) {

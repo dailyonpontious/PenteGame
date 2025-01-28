@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc180.pontious.dailyon.pentegame.Controller.PenteController">
    <children>
       <ImageView fitHeight="738.0" fitWidth="744.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -64,6 +64,6 @@
       </GridPane>
       <TextField fx:id="NameTwo" layoutX="925.0" layoutY="98.0" promptText="Player Two Name" />
       <Label layoutX="776.0" layoutY="101.0" prefHeight="19.0" prefWidth="149.0" text="Enter Player Two's Name:" />
-      <Label fx:id="playerTurn" layoutX="819.0" layoutY="176.0" prefHeight="83.0" prefWidth="211.0" />
+      <Label fx:id="lblTurn" layoutX="819.0" layoutY="176.0" prefHeight="83.0" prefWidth="211.0" />
    </children>
 </AnchorPane>
