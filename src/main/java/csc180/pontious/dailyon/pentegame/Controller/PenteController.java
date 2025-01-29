@@ -87,9 +87,7 @@ public class PenteController {
         lblTurn.setText("It's " + currentPlayer.getName() + "'s turn!");
     }
 
-    private void checkWin(int row, int col) {
 
-    }
 
     @FXML
     private void startGame(ActionEvent event) {
@@ -119,5 +117,58 @@ public class PenteController {
         // Handle the move with the calculated row and column
         handleMove(row, col);
 
+    }
+    /// ////////////////////////////Checking Win Methods////////////////////////
+    private void checkWin(int row, int col) {
+        if(checkDirection(row, col, 1, 0) ||
+            checkDirection(row, col, 0, 1) ||
+            checkDirection(row, col, 1, 1) ||
+            checkDirection(row, col, 1, -1))   {
+            lblTurn.setText(currentPlayer.getName() + " won!");
+        }
+    }
+
+    private boolean checkDirection(int row, int col, int dRow, int dCol) {
+        int count = 1;
+
+        count += countInDirection(row, col, dRow, dCol);
+        count += countInDirection(row, col, -dRow, -dCol);
+
+        return count >= 5;
+
+    }
+    private int countInDirection(int row, int col, int dRow, int dCol) {
+        int count = 0;
+
+        while(true){
+            row += dRow;
+            col += dCol;
+
+            if (row < 0|| row >= 19 || col < 0 || col>= 19) break;
+            ImageView piece = getPieceAt(row, col);
+            if (piece != null && CurrentPlayer(piece)) {
+                count++;
+            }else {
+                break;
+            }
+
+        }
+        return count;
+    }
+    private boolean CurrentPlayer(ImageView piece){
+        String currentPlayerImagePath = (currentPlayer == nameOne) ? "/conceredCat.png" : "/huhCat.webp";
+        return piece.getImage().getUrl().endsWith(currentPlayerImagePath);
+    }
+    private ImageView getPieceAt(int row, int col) {
+        for (Node node : penteGrid.getChildren()) {
+            Integer existingRow = GridPane.getRowIndex(node);
+            Integer existingCol = GridPane.getColumnIndex(node);
+            if (existingRow != null && existingCol != null && existingRow == row && existingCol == col) {
+                if (node instanceof ImageView) {
+                    return (ImageView) node;
+                }
+            }
+        }
+        return null;
     }
 }
