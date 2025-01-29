@@ -7,7 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 
 
 public class PenteController {
@@ -20,6 +21,8 @@ public class PenteController {
 
     @FXML
     private TextField txtPlayerTwo;
+    @FXML
+    private GridPane penteGrid;
 
     @FXML
     public Label lblTurn;
@@ -73,5 +76,10 @@ public class PenteController {
         if (playerTwo.isEmpty()) playerTwo = "Player 2"; //for null or empty names
 
         initializePlayers(playerOne, playerTwo);
+    }
+
+    @FXML
+    void gridClick(MouseEvent event) {
+
     }
 }
