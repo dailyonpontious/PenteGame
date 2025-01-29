@@ -8,21 +8,16 @@ package csc180.pontious.dailyon.pentegame.Model;
 
 public class Player {
     private String name;
-    private String symbol;
 
     public Player() { // Default Constructor
     }
 
-    public Player(String name, String symbol) {
+    public Player(String name) {
         this.name = (name == null || name.trim().isEmpty()) ? "Unnamed Player" : name;
-        this.symbol = symbol;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSymbol() {
-        return symbol;
-    }
 }

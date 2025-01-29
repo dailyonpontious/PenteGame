@@ -3,10 +3,13 @@ package csc180.pontious.dailyon.pentegame.Controller;
 
 import csc180.pontious.dailyon.pentegame.Model.Player;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -31,19 +34,16 @@ public class PenteController {
 
     public void initializePlayers(String playerNameOne, String playerNameTwo) {
 
-        String catOne = this.getClass().getResource("/concernedCat.png").toString();
-        String catTwo = this.getClass().getResource("/huhCat.webp").toString();
-
-        nameOne = new Player(playerNameOne, catOne);
-        nameTwo = new Player(playerNameTwo, catTwo);
+        nameOne = new Player(playerNameOne);
+        nameTwo = new Player(playerNameTwo);
         currentPlayer = nameOne;
         updateTurn();
     }
 
     public void handleMove(int row, int col) {
         if (isMoveValid(row, col)) {
-            placePiece(row, col, currentPlayer.getSymbol());
-            checkWin(row, col);
+           placePiece(row, col);
+           checkWin(row, col);
 
 
             currentPlayer = (currentPlayer == nameOne) ? nameTwo : nameOne;
@@ -51,12 +51,23 @@ public class PenteController {
         }
     }
 
-    private void placePiece(int row, int col, String symbol) {
+    private void placePiece(int row, int col) {
+        String imagePath = (currentPlayer == nameOne) ? "/concernedCat.png" : "/huhCat.webp";
+        Image img = new Image(getClass().getResource(imagePath).toString());
+        ImageView imgView = new ImageView(img);
+        imgView.setFitWidth(30);
+        imgView.setFitHeight(30);
 
-
+        penteGrid.add(imgView, col, row);
     }
 
     private boolean isMoveValid(int row, int col) {
+
+        for (Node node : penteGrid.getChildren()) { // This checks to see if there is already a piece there and says no if it finds one.
+            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -80,6 +91,13 @@ public class PenteController {
 
     @FXML
     void gridClick(MouseEvent event) {
+        Node clickedNode = (Node) event.getPickResult().getIntersectedNode();
 
+        if (clickedNode != penteGrid) {  // Ignore clicks outside the grid
+            int col = GridPane.getColumnIndex(clickedNode) == null ? 0 : GridPane.getColumnIndex(clickedNode);
+            int row = GridPane.getRowIndex(clickedNode) == null ? 0 : GridPane.getRowIndex(clickedNode);
+
+            handleMove(row, col);
+        }
     }
 }
