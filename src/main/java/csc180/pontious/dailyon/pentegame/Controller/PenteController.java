@@ -3,41 +3,53 @@ package csc180.pontious.dailyon.pentegame.Controller;
 
 import csc180.pontious.dailyon.pentegame.Model.Player;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
+import javafx.scene.image.ImageView;
 
 
 public class PenteController {
-    private Player playerOne;
-    private Player playerTwo;
+    private Player nameOne;
+    private Player nameTwo;
     private Player currentPlayer;
 
     @FXML
-    public Label lblTurn; // Label to show whose turn it is
+    private TextField txtPlayerOne;
+
+    @FXML
+    private TextField txtPlayerTwo;
+
+    @FXML
+    public Label lblTurn;
+    @FXML
+    public Button btnStart;
 
     public void initializePlayers(String playerNameOne, String playerNameTwo) {
 
         String catOne = this.getClass().getResource("/concernedCat.png").toString();
-        String catTwo = this.getClass().getResource("/huhCat.png").toString();
+        String catTwo = this.getClass().getResource("/huhCat.webp").toString();
 
-        playerOne = new Player(playerNameOne, catOne);
-        playerTwo = new Player(playerNameTwo, catTwo);
-        currentPlayer = playerOne;
-        updateTurnIndicator();
+        nameOne = new Player(playerNameOne, catOne);
+        nameTwo = new Player(playerNameTwo, catTwo);
+        currentPlayer = nameOne;
+        updateTurn();
     }
 
     public void handleMove(int row, int col) {
         if (isMoveValid(row, col)) {
             placePiece(row, col, currentPlayer.getSymbol());
-            checkForWinOrTriaTesera(row, col);
+            checkWin(row, col);
 
 
-            currentPlayer = (currentPlayer == playerOne) ? playerTwo : playerOne;
-            updateTurnIndicator();
+            currentPlayer = (currentPlayer == nameOne) ? nameTwo : nameOne;
+            updateTurn();
         }
     }
 
     private void placePiece(int row, int col, String symbol) {
-        // Code to update the board UI with "X" or "O"
+
 
     }
 
@@ -45,11 +57,21 @@ public class PenteController {
         return true;
     }
 
-    private void updateTurnIndicator() {
+    private void updateTurn() {
         lblTurn.setText("It's " + currentPlayer.getName() + "'s turn!");
     }
 
-    private void checkForWinOrTriaTesera(int row, int col) {
-        // Implement win condition checks and tria/tesera detection
+    private void checkWin(int row, int col) {
+
+    }
+    @FXML
+    private void startGame(ActionEvent event) {
+        String playerOne = txtPlayerOne.getText();
+        String playerTwo = txtPlayerTwo.getText();
+
+        if (playerOne.isEmpty()) playerOne = "Player 1"; //for null or empty names
+        if (playerTwo.isEmpty()) playerTwo = "Player 2"; //for null or empty names
+
+        initializePlayers(playerOne, playerTwo);
     }
 }

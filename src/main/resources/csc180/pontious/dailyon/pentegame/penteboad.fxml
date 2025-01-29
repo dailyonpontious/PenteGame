@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -16,7 +17,7 @@
             <Image url="@betterpenteboard.png" />
          </image>
       </ImageView>
-      <TextField fx:id="NameOne" layoutX="925.0" layoutY="62.0" promptText="Player One Name" />
+      <TextField fx:id="txtPlayerOne" layoutX="925.0" layoutY="62.0" promptText="Player One Name" />
       <Label layoutX="776.0" layoutY="65.0" prefHeight="19.0" prefWidth="149.0" text="Enter Player One's Name:" />
       <GridPane layoutX="8.0" layoutY="9.0" prefHeight="715.0" prefWidth="721.0">
         <columnConstraints>
@@ -62,8 +63,9 @@
             <RowConstraints maxHeight="120.66666666666663" minHeight="10.0" prefHeight="34.66666666666663" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <TextField fx:id="NameTwo" layoutX="925.0" layoutY="98.0" promptText="Player Two Name" />
+      <TextField fx:id="txtPlayerTwo" layoutX="925.0" layoutY="98.0" promptText="Player Two Name" />
       <Label layoutX="776.0" layoutY="101.0" prefHeight="19.0" prefWidth="149.0" text="Enter Player Two's Name:" />
       <Label fx:id="lblTurn" layoutX="819.0" layoutY="176.0" prefHeight="83.0" prefWidth="211.0" />
+      <Button fx:id="btnStart" layoutX="900.0" layoutY="546.0" mnemonicParsing="false" onAction="#startGame" text="Start" />
    </children>
 </AnchorPane>
