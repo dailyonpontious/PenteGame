@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
+import java.io.InputStream;
+
 
 public class PenteController {
     private Player nameOne;
@@ -31,6 +33,16 @@ public class PenteController {
     public Label lblTurn;
     @FXML
     public Button btnStart;
+
+
+
+/// ///////////////////////////Cooked???///////////////////////////////////////
+     private String imagePath = (currentPlayer == nameOne)
+            ? "/conceredCat.png"
+            : "/huhCat.webp";
+
+
+//////////////////////////////////////////////////////////////////////////
 
     public void initializePlayers(String playerNameOne, String playerNameTwo) {
 
@@ -52,7 +64,6 @@ public class PenteController {
     }
 
     private void placePiece(int row, int col) {
-        String imagePath = (currentPlayer == nameOne) ? "/concernedCat.png" : "/huhCat.webp";
         Image img = new Image(getClass().getResource(imagePath).toString());
         ImageView imgView = new ImageView(img);
         imgView.setFitWidth(30);
@@ -91,13 +102,13 @@ public class PenteController {
 
     @FXML
     void gridClick(MouseEvent event) {
-        Node clickedNode = (Node) event.getPickResult().getIntersectedNode();
+        Node clickedNode = event.getPickResult().getIntersectedNode();
 
-        if (clickedNode != penteGrid) {  // Ignore clicks outside the grid
-            int col = GridPane.getColumnIndex(clickedNode) == null ? 0 : GridPane.getColumnIndex(clickedNode);
-            int row = GridPane.getRowIndex(clickedNode) == null ? 0 : GridPane.getRowIndex(clickedNode);
+        int col = GridPane.getColumnIndex(clickedNode) == null ? 0 : GridPane.getColumnIndex(clickedNode);
+        int row = GridPane.getRowIndex(clickedNode) == null ? 0 : GridPane.getRowIndex(clickedNode);
 
-            handleMove(row, col);
-        }
+        handleMove(row, col);
+
+
     }
 }
