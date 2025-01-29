@@ -65,7 +65,7 @@
       </GridPane>
       <TextField fx:id="txtPlayerTwo" layoutX="925.0" layoutY="98.0" promptText="Player Two Name" />
       <Label layoutX="776.0" layoutY="101.0" prefHeight="19.0" prefWidth="149.0" text="Enter Player Two's Name:" />
-      <Label fx:id="lblTurn" layoutX="819.0" layoutY="176.0" prefHeight="83.0" prefWidth="211.0" />
+      <Label fx:id="lblTurn" layoutX="819.0" layoutY="171.0" prefHeight="83.0" prefWidth="211.0" />
       <Button fx:id="btnStart" layoutX="900.0" layoutY="546.0" mnemonicParsing="false" onAction="#startGame" text="Start" />
    </children>
 </AnchorPane>

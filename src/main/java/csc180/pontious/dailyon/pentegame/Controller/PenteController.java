@@ -13,8 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
-import java.io.InputStream;
-
 
 public class PenteController {
     private Player nameOne;
@@ -35,14 +33,13 @@ public class PenteController {
     public Button btnStart;
 
 
-
-/// ///////////////////////////Cooked???///////////////////////////////////////
-     private String imagePath = (currentPlayer == nameOne)
+    /// ///////////////////////////Cooked???///////////////////////////////////////
+    private String imagePath = (currentPlayer == nameOne)
             ? "/conceredCat.png"
             : "/huhCat.webp";
 
 
-//////////////////////////////////////////////////////////////////////////
+    /// ///////////////////////////////////////////////////////////////////////
 
     public void initializePlayers(String playerNameOne, String playerNameTwo) {
 
@@ -54,8 +51,8 @@ public class PenteController {
 
     public void handleMove(int row, int col) {
         if (isMoveValid(row, col)) {
-           placePiece(row, col);
-           checkWin(row, col);
+            placePiece(row, col);
+            checkWin(row, col);
 
 
             currentPlayer = (currentPlayer == nameOne) ? nameTwo : nameOne;
@@ -75,7 +72,11 @@ public class PenteController {
     private boolean isMoveValid(int row, int col) {
 
         for (Node node : penteGrid.getChildren()) { // This checks to see if there is already a piece there and says no if it finds one.
-            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
+            Integer existingRow = GridPane.getRowIndex(node);
+            Integer existingCol = GridPane.getColumnIndex(node);
+
+            if (existingRow != null && existingCol != null
+                    && existingRow == row && existingCol == col && node instanceof ImageView) {
                 return false;
             }
         }
@@ -89,6 +90,7 @@ public class PenteController {
     private void checkWin(int row, int col) {
 
     }
+
     @FXML
     private void startGame(ActionEvent event) {
         String playerOne = txtPlayerOne.getText();
@@ -101,14 +103,21 @@ public class PenteController {
     }
 
     @FXML
-    void gridClick(MouseEvent event) {
-        Node clickedNode = event.getPickResult().getIntersectedNode();
+    void gridClick(MouseEvent event) { // CHATGPT IS SO GOATED FOR THIS!!!!!!!
+        GridPane grid = (GridPane) event.getSource();
+        double mouseX = event.getSceneX();
+        double mouseY = event.getSceneY();
 
-        int col = GridPane.getColumnIndex(clickedNode) == null ? 0 : GridPane.getColumnIndex(clickedNode);
-        int row = GridPane.getRowIndex(clickedNode) == null ? 0 : GridPane.getRowIndex(clickedNode);
+        // Calculate the row and column based on the grid layout
+        int col = (int) (mouseX / grid.getWidth() * 19); // Assuming 19 columns for a Pente board
+        int row = (int) (mouseY / grid.getHeight() * 19); // Assuming 19 rows for a Pente board
 
+        // Ensure the row and column are within bounds
+        col = Math.min(Math.max(col, 0), 18);
+        row = Math.min(Math.max(row, 0), 18);
+
+        // Handle the move with the calculated row and column
         handleMove(row, col);
-
 
     }
 }
