@@ -9,15 +9,25 @@ package csc180.pontious.dailyon.pentegame.Model;
 public class Player {
     private String name;
 
+    private String imagePath;
+
     public Player() { // Default Constructor
     }
 
-    public Player(String name) {
+    public Player(String name, String imagePath) {
         this.name = (name == null || name.trim().isEmpty()) ? "Unnamed Player" : name;
+        this.imagePath = imagePath;
     }
 
     public String getName() {
         return name;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 }

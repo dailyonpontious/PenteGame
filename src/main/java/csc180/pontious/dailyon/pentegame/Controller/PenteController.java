@@ -33,20 +33,13 @@ public class PenteController {
     public Button btnStart;
 
 
-    /// ///////////////////////////Cooked???///////////////////////////////////////
-//    private String imagePath = (currentPlayer == nameOne)
-//            ? "/conceredCat.png"
-//            : "/huhCat.webp";
-    private String getImagePath() {
-        return (currentPlayer == nameOne) ? "/conceredCat.png" : "/huhCat.webp";
-    }
 
     /// ///////////////////////////////////////////////////////////////////////
 
     public void initializePlayers(String playerNameOne, String playerNameTwo) {
 
-        nameOne = new Player(playerNameOne);
-        nameTwo = new Player(playerNameTwo);
+        nameOne = new Player(playerNameOne, "/conceredCat.png");
+        nameTwo = new Player(playerNameTwo, "/better_Huh.png");
         currentPlayer = nameOne;
         updateTurn();
     }
@@ -62,10 +55,8 @@ public class PenteController {
         }
     }
 
-
     private void placePiece(int row, int col) {
-        String imagePath = getImagePath();
-        Image img = new Image(getClass().getResource(imagePath).toString());
+        Image img = new Image(getClass().getResource(currentPlayer.getImagePath()).toString());
         ImageView imgView = new ImageView(img);
         imgView.setFitWidth(30);
         imgView.setFitHeight(30);
@@ -105,7 +96,7 @@ public class PenteController {
     }
 
     @FXML
-    void gridClick(MouseEvent event) {
+    void gridClick(MouseEvent event) { // CHATGPT IS SO GOATED FOR THIS!!!!!!!
         GridPane grid = (GridPane) event.getSource();
         double mouseX = event.getSceneX();
         double mouseY = event.getSceneY();
@@ -125,9 +116,9 @@ public class PenteController {
     /// ////////////////////////////Checking Win Methods////////////////////////
     private boolean checkWin(int row, int col) {
         if(checkDirection(row, col, 1, 0) ||
-            checkDirection(row, col, 0, 1) ||
-            checkDirection(row, col, 1, 1) ||
-            checkDirection(row, col, 1, -1))   {
+                checkDirection(row, col, 0, 1) ||
+                checkDirection(row, col, 1, 1) ||
+                checkDirection(row, col, 1, -1))   {
             lblTurn.setText(currentPlayer.getName() + " won!");
         }
         return false;
@@ -161,7 +152,7 @@ public class PenteController {
         return count;
     }
     private boolean CurrentPlayer(ImageView piece){
-        String currentPlayerImagePath = (currentPlayer == nameOne) ? "conceredCat.png" : "huhCat.webp";
+        String currentPlayerImagePath = (currentPlayer == nameOne) ? "/conceredCat.png" : "/huhCat.webp";
         return piece.getImage().getUrl().endsWith(currentPlayerImagePath);
     }
     private ImageView getPieceAt(int row, int col) {
