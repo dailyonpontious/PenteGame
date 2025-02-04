@@ -47,6 +47,7 @@ public class PenteController {
     public void handleMove(int row, int col) {
         if (isMoveValid(row, col)) {
             placePiece(row, col);
+            checkCapture(row, col);
             if (checkWin(row, col)) { // Stop the game if someone wins
                 return;
             }
@@ -168,6 +169,45 @@ public class PenteController {
         }
         return null;
     }
+    /// ///////////////////////////////////////////////////////////////////////
+    /// ////////////////Piece Taker/////////////////////////////////////////////
+    private void checkCapture(int row, int col) {
+        int[][] directions = { {1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1} };
+
+        for (int[] dir : directions) {
+            int dRow = dir[0];
+            int dCol = dir[1];
+
+            int enemyRow = row + dRow;
+            int enemyCol = col + dCol;
+            int endRow = row + 2 * dRow;
+            int endCol = col + 2 * dCol;
+
+            if (isValidPosition(enemyRow, enemyCol) && isValidPosition(endRow, endCol)) {
+                ImageView enemyPiece = getPieceAt(enemyRow, enemyCol);
+                ImageView endPiece = getPieceAt(endRow, endCol);
+
+                if (enemyPiece != null && endPiece != null &&
+                        !CurrentPlayer(enemyPiece) && CurrentPlayer(endPiece)) {
+
+                    penteGrid.getChildren().remove(enemyPiece); // Remove captured piece
+                    penteGrid.getChildren().remove(getPieceAt(endRow, endCol)); // Ensure correct removal
+
+                    currentPlayer.incrementCaptureCount();  // Track captures
+
+                    if (currentPlayer.getCaptureCount() >= 5) {
+                        lblTurn.setText(currentPlayer.getName() + " wins by capturing 5 pairs!");
+                    }
+                }
+            }
+        }
+    }
+
+    // Ensure row and column are within bounds
+    private boolean isValidPosition(int row, int col) {
+        return row >= 0 && row < 19 && col >= 0 && col < 19;
+    }
+
 }
 
 
