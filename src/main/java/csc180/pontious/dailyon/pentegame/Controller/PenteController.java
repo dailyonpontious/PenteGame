@@ -102,9 +102,8 @@ public class PenteController {
         double mouseY = event.getSceneY();
 
         // Calculate the row and column based on the grid layout
-        int col = (int) (mouseX / grid.getWidth() * 19); // Assuming 19 columns for a Pente board
-        int row = (int) (mouseY / grid.getHeight() * 19); // Assuming 19 rows for a Pente board
-
+        int col = (int) (mouseX / grid.getWidth() * 19);
+        int row = (int) (mouseY / grid.getHeight() * 19);
         // Ensure the row and column are within bounds
         col = Math.min(Math.max(col, 0), 18);
         row = Math.min(Math.max(row, 0), 18);
@@ -115,11 +114,13 @@ public class PenteController {
     }
     /// ////////////////////////////Checking Win Methods////////////////////////
     private boolean checkWin(int row, int col) {
-        if(checkDirection(row, col, 1, 0) ||
-                checkDirection(row, col, 0, 1) ||
-                checkDirection(row, col, 1, 1) ||
-                checkDirection(row, col, 1, -1))   {
+        if(checkDirection(row, col, 1, 0) || // Checks Horizontally
+                checkDirection(row, col, 0, 1) || // Checks Vertically
+                checkDirection(row, col, 1, 1) || // Checks Diagonal \
+                checkDirection(row, col, 1, -1))   // Checks Diagonal /
+        {
             lblTurn.setText(currentPlayer.getName() + " won!");
+            return true;
         }
         return false;
     }
@@ -152,7 +153,7 @@ public class PenteController {
         return count;
     }
     private boolean CurrentPlayer(ImageView piece){
-        String currentPlayerImagePath = (currentPlayer == nameOne) ? "/conceredCat.png" : "/huhCat.webp";
+        String currentPlayerImagePath = (currentPlayer == nameOne) ? "/conceredCat.png" : "/better_Huh.png";
         return piece.getImage().getUrl().endsWith(currentPlayerImagePath);
     }
     private ImageView getPieceAt(int row, int col) {
