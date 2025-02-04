@@ -179,53 +179,41 @@ public class PenteController {
                 {1, 1}, {-1, -1}, {1, -1}, {-1, 1}
         };
 
-        // Start recursion in all directions
-        for (int[] dir : directions) {
+
+        for (int[] dir : directions) { // This starts the recursion
             int dRow = dir[0];
             int dCol = dir[1];
 
-            // Call recursive check in both directions from the current piece (row, col)
             checkCaptureInDirection(row, col, dRow, dCol);
         }
     }
     private void checkCaptureInDirection(int row, int col, int dRow, int dCol) {
-        // Start by checking the first opponent piece and then the next piece in the direction
         int enemyRow1 = row + dRow;
         int enemyCol1 = col + dCol;
         int enemyRow2 = row + 2 * dRow;
         int enemyCol2 = col + 2 * dCol;
 
-        // Check if the middle piece and end piece exist and are valid
         if (isValidPosition(enemyRow1, enemyCol1) && isValidPosition(enemyRow2, enemyCol2)) {
             ImageView enemyPiece1 = getPieceAt(enemyRow1, enemyCol1);
             ImageView enemyPiece2 = getPieceAt(enemyRow2, enemyCol2);
-            ImageView currentPlayerPiece = getPieceAt(row, col);
+            ImageView currentPlayerPiece = getPieceAt(row, col); // ChatGPT helped here and explained how it works
 
-            // Check if the middle pieces are opponent's and the end piece is the current player's
+
             if (enemyPiece1 != null && enemyPiece2 != null && currentPlayerPiece != null &&
-                    !CurrentPlayer(enemyPiece1) && !CurrentPlayer(enemyPiece2) && CurrentPlayer(currentPlayerPiece)) {
+                    !CurrentPlayer(enemyPiece1) && !CurrentPlayer(enemyPiece2) && CurrentPlayer(currentPlayerPiece)) { //Debugged and fixed by ChatGPT
 
-                // Remove both opponent pieces (middle and end pieces)
                 penteGrid.getChildren().remove(enemyPiece1);
                 penteGrid.getChildren().remove(enemyPiece2);
-
-                // Increase the capture count for the current player
                 currentPlayer.incrementCaptureCount();
 
-                // Check if the player wins by capturing 5 pairs (10 pieces)
                 if (currentPlayer.getCaptureCount() >= 5) {
                     lblTurn.setText(currentPlayer.getName() + " wins by capturing 5 pairs!");
                 }
-
-                // After a successful capture, check if there are more pieces to capture in the same direction
-                // Recursively check for additional captures along the same direction
                 checkCaptureInDirection(enemyRow2, enemyCol2, dRow, dCol);
             }
         }
     }
 
-
-    // Ensure row and column are within bounds
     private boolean isValidPosition(int row, int col) {
         return row >= 0 && row < 19 && col >= 0 && col < 19;
     }
