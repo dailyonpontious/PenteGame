@@ -102,10 +102,9 @@ public class PenteController {
         double mouseX = event.getSceneX();
         double mouseY = event.getSceneY();
 
-        // Calculate the row and column based on the grid layout
         int col = (int) (mouseX / grid.getWidth() * 19);
         int row = (int) (mouseY / grid.getHeight() * 19);
-        // Ensure the row and column are within bounds
+
         col = Math.min(Math.max(col, 0), 18);
         row = Math.min(Math.max(row, 0), 18);
 
