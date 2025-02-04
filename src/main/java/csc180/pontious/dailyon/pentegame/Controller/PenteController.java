@@ -141,7 +141,7 @@ public class PenteController {
             row += dRow;
             col += dCol;
 
-            if (row < 0 || row >= 19 || col < 0 || col >= 19) break; // Out of bounds
+            if (row < 0 || row >= 19 || col < 0 || col >= 19) break; // Shows out of bounds
 
             ImageView piece = getPieceAt(row, col);
             if (piece != null && CurrentPlayer(piece)) {
@@ -157,6 +157,8 @@ public class PenteController {
         String currentPlayerImagePath = (currentPlayer == nameOne) ? "/conceredCat.png" : "/better_Huh.png";
         return piece.getImage().getUrl().endsWith(currentPlayerImagePath);
     }
+
+
     private ImageView getPieceAt(int row, int col) {
         for (Node node : penteGrid.getChildren()) {
             Integer existingRow = GridPane.getRowIndex(node);
@@ -172,7 +174,10 @@ public class PenteController {
     /// ///////////////////////////////////////////////////////////////////////
     /// ////////////////Piece Taker/////////////////////////////////////////////
     private void checkCapture(int row, int col) {
-        int[][] directions = { {1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1} };
+        int[][] directions = {
+                {1, 0}, {-1, 0}, {0, 1}, {0, -1},
+                {1, 1}, {-1, -1}, {1, -1}, {-1, 1}
+        };
 
         for (int[] dir : directions) {
             int dRow = dir[0];
@@ -187,14 +192,15 @@ public class PenteController {
                 ImageView enemyPiece = getPieceAt(enemyRow, enemyCol);
                 ImageView endPiece = getPieceAt(endRow, endCol);
 
+                // Check if middle piece is opponent's and end piece is current player's
                 if (enemyPiece != null && endPiece != null &&
                         !CurrentPlayer(enemyPiece) && CurrentPlayer(endPiece)) {
 
-                    penteGrid.getChildren().remove(enemyPiece); // Remove captured piece
-                    penteGrid.getChildren().remove(getPieceAt(endRow, endCol)); // Ensure correct removal
+                    penteGrid.getChildren().remove(enemyPiece); // Remove only the middle captured piece
 
-                    currentPlayer.incrementCaptureCount();  // Track captures
+                    currentPlayer.incrementCaptureCount(); // Increase capture count
 
+                    // Check if player wins by capturing 5 pairs (10 pieces)
                     if (currentPlayer.getCaptureCount() >= 5) {
                         lblTurn.setText(currentPlayer.getName() + " wins by capturing 5 pairs!");
                     }

@@ -9,13 +9,13 @@ package csc180.pontious.dailyon.pentegame.Model;
 public class Player {
     private String name;
     private String imagePath;
-    private int caputureCount;
+    private int captureCount;
 /// ////////////////Getters and Setters///////////////////////////////////
     public int getCaptureCount() {
-        return caputureCount;
+        return captureCount;
     }
     public void setCaputureCount(int caputureCount) {
-        this.caputureCount = caputureCount;
+        this.captureCount = caputureCount;
     }
 
     public String getName() {
@@ -32,17 +32,17 @@ public class Player {
     /// /////////////////////////////////////////////////
     /// ////////////////Constructors/////////////////
     public Player() { // Default Constructor
-
+        this.captureCount = 0;
     }
 
     public Player(String name, String imagePath) {
         this.name = (name == null || name.trim().isEmpty()) ? "Unnamed Player" : name;
         this.imagePath = imagePath;
-        this.caputureCount = 0;
+        this.captureCount = 0;
     }
 
     public void incrementCaptureCount() {
-        caputureCount++;
+        captureCount++;
     }
 
 
